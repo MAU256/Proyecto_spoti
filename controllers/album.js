@@ -6,8 +6,7 @@ let mongoosePaginate = require('mongoose-pagination');
 let Artist = require('../models/artist');
 let Album = require('../models/album');
 let Song = require('../models/song');
-const { restart } = require('nodemon');
-const { find } = require('../models/artist');
+
 
 function getAlbum(req, res) {
     let albumId = req.params.id;
