@@ -20,7 +20,12 @@ export class UserService {
     }
     let params = JSON.stringify(user_to_login);
     const headers = { 'content-type': 'application/json' }
-    return this.http.post(this.url + 'login', params, { headers: headers })
+    return this.http.post(this.url + 'login', params, { headers: headers });
+  }
+  register(user_to_register:any): Observable<any>{
+    let params = JSON.stringify(user_to_register);
+    const headers = { 'content-type': 'application/json' }
+    return this.http.post(this.url + 'register', params, { headers: headers })
 
   }
 

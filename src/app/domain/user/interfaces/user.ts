@@ -7,3 +7,7 @@ export interface User{
         role:    string,
         image:   string    
 }
+
+export interface ApiRestUserInterface{
+        
+}
