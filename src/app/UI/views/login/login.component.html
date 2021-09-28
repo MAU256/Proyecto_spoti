@@ -19,7 +19,7 @@
         <h1>Identificate</h1>
         <div *ngIf="errorMessage">
             <div class="alert alert-info">
-                <strong>ERROR </strong>{{errorMessage}}
+                <strong>{{message}} </strong>{{errorMessage}}
             </div>
         </div>
 
@@ -55,7 +55,7 @@
         <h1>Registrate</h1>
         <div *ngIf="alertRegister">
             <div class="alert alert-info">
-                <strong>ERROR </strong>{{alertRegister}}
+                <strong>{{message}} </strong>{{alertRegister}}
             </div>
         </div>
         <form #registerForm="ngForm" (ngSubmit) = "onSubmitRegister()" class="col-md-10">
@@ -81,10 +81,10 @@
 
             <div>
                 <label for="">Correo electronmico:</label>
-                <input type="text" #email="ngModel" name="email" [(ngModel)]="user_register!.email" class="form-control"
+                <input type="text" #emailRegister="ngModel" name="emailRegister" [(ngModel)]="user_register!.email" class="form-control"
                     required>
                     
-                <span *ngIf="!email.valid && email.touched">
+                <span *ngIf="!emailRegister.valid && emailRegister.touched">
                     El email es obligatorio
                 </span>
                 
@@ -92,11 +92,11 @@
 
             <div>
                 <label for="">Contraseña:</label>
-                <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register!.password"
+                <input type="password" #passwordRegister="ngModel" name="passwordRegister" [(ngModel)]="user_register!.password"
                     class="form-control" required>
 
-                    <span *ngIf="!password.valid && password.touched">
-                        La contraseña es obligatoria
+                    <span *ngIf="!passwordRegister.valid && passwordRegister.touched">
+                        El password es obligatorio
                     </span>
             </div>
 

@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   public token?: string;
   public errorMessage: string = '';
   public alertRegister: string = '';
+  public message:string = '';
 
   constructor(
     private _userService: UserService,
@@ -93,7 +94,7 @@ export class LoginComponent implements OnInit {
               let errorMessage = <any>error;
               if (errorMessage != null) {
                 this.errorMessage = "   " + error.error.message;
-                console.log(error)
+                this.message = "ERROR";
               }
             }
           );
@@ -103,7 +104,7 @@ export class LoginComponent implements OnInit {
         let errorMessage = <any>error;
         if (errorMessage != null) {
           this.errorMessage = "   " + error.error.message;
-          console.log(error)
+          this.message = "ERROR";
         }
       }
     );
@@ -128,9 +129,11 @@ export class LoginComponent implements OnInit {
         let user = response.user;
         this.user_register = user;
         if (!user._id) {
-          this.alertRegister = "Error al registrarse";
+         this.alertRegister = "Error al registrarse";
+          
         } else {
-          this.alertRegister = "El registro se ha realizado correctamente"
+          this.message = "LISTO"
+          this.alertRegister = "El registro se ha realizado correctamente!"
           this.user_register = {
             _id: '',
             name: '',
@@ -144,9 +147,9 @@ export class LoginComponent implements OnInit {
       }, error => {
         // let body = JSON.parse(error._body);
         let alertRegister = <any>error;
-        if (alertRegister != null) {
-          this.alertRegister = "   " + error.error.message;
-          console.log(error)
+        if (alertRegister != '') {
+         this.message = "ERROR";          
+          this.alertRegister = "   " + error.error.message;          
         }
       }
     );
