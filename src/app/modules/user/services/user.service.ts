@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from '../../services/local-storage.service';
@@ -30,7 +31,8 @@ export class UserService {
     return this.http.post(this.url + 'register', params, { headers: headers })
 
   }
-  updateUser(user_to_update:any):Observable<any>{
+  // updateUser(user_to_update:any):Observable<any>{}
+  updateUser(user_to_update: any):Observable<any>{
     let params = JSON.stringify(user_to_update);
     const headers = { 
                       'content-type': 'application/json',
