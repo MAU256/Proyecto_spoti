@@ -1,25 +1,69 @@
-<div *ngIf="identity" class="navigation row">
-    <h1 class="col-lg-4">{{title}}</h1>
-    <button class="btn btn-warning" (click)="logOut()">
-        Cerrar sesion
-    </button>
-    <span class="">
-        {{identity.name}}
-    </span>
+<div *ngIf="identity" class="main row">
+    <div class="navigation col-lg-2">
+        
+
+        <nav id="user_logged">
+            <!-- <i class="musicBlow bi bi-music-note-beamed"><h1 class="musicBlow">{{title}}</h1></i> -->
+            <i class="musicBlow bi bi-music-note-beamed"> {{title}}</i>
+            
+            <div class="user-image" *ngIf="identity!.image && identity!.image !== ''">
+                <img src="{{url + 'get-image-user/' + identity!.image}}" alt=""
+                    style="width: 80px; height: 80px; border-radius: 100%;">
+            </div>
+
+            <span class="identity-name" id="identity_name">
+                {{identity.name}}
+            </span>
+
+           
+        </nav>
+
+        <nav id="navigation">
+            <div>
+                <a [routerLink]="['/mis-datos']" [routerLinkActive]="['actived']">
+                    <i class="bi bi-gear"></i>
+                    Mis datos
+                </a>
+            </div>
+            <div>
+                <a href="">
+                    <i class="bi bi-search"></i>
+                    Buscar                   
+                </a>
+            </div>
+            <div>
+                <a [routerLink] = "['/artistas', 1]"  [routerLinkActive]="['actived']">
+                    <i class="bi bi-star-fill"></i>
+                    Artistas
+                </a>
+            </div>
+            <div>
+                <a href="">
+                    <i class="bi bi-journals"></i>
+                    Albums
+                </a>
+            </div>
+        </nav>
+        <nav id="nav-cerrar">
+            <button class="btn btn-warning" (click)="logOut()" [routerLink] = "['/']">
+                Cerrar sesion
+            </button>
+        </nav>       
+
+    </div>
+
+    <div  class="central col-lg-10 offset-lg1">        
+        <router-outlet></router-outlet>
+    </div>
 </div>
 
-<div *ngIf="identity" class="central col-lg-11">
-    <p>Estas logueado en la aplicacion</p>
-</div>
 
-<div class="clearfix"></div>
-
-<div class="row col-lg-12" *ngIf="!identity">
+<div class="col-lg-11" *ngIf="!identity">
     <div class="col-lg-6">
         <h1>Identificate</h1>
         <div *ngIf="errorMessage">
             <div class="alert alert-info">
-                <strong>ERROR </strong>{{errorMessage}}
+                <strong>{{messageLogin}} </strong>{{errorMessage}}
             </div>
         </div>
 
@@ -45,7 +89,7 @@
             </div>
 
             <div>
-                <input type="submit" value="Ingresar" class="btn btn-primary">
+                <input type="submit" value="Ingresar" class="btn btn-primary" [routerLink] = "['']">
             </div>
 
         </form>
@@ -55,10 +99,10 @@
         <h1>Registrate</h1>
         <div *ngIf="alertRegister">
             <div class="alert alert-info">
-                <strong>ERROR </strong>{{alertRegister}}
+                <strong>{{messageRegister}} </strong>{{alertRegister}}
             </div>
         </div>
-        <form #registerForm="ngForm" (ngSubmit) = "onSubmitRegister()" class="col-md-10">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-10">
 
             <div>
                 <label for="">Nombre:</label>
@@ -81,23 +125,23 @@
 
             <div>
                 <label for="">Correo electronmico:</label>
-                <input type="text" #email="ngModel" name="email" [(ngModel)]="user_register!.email" class="form-control"
-                    required>
-                    
-                <span *ngIf="!email.valid && email.touched">
+                <input type="text" #emailRegister="ngModel" name="emailRegister" [(ngModel)]="user_register!.email"
+                    class="form-control" required>
+
+                <span *ngIf="!emailRegister.valid && emailRegister.touched">
                     El email es obligatorio
                 </span>
-                
+
             </div>
 
             <div>
                 <label for="">Contraseña:</label>
-                <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register!.password"
-                    class="form-control" required>
+                <input type="password" #passwordRegister="ngModel" name="passwordRegister"
+                    [(ngModel)]="user_register!.password" class="form-control" required>
 
-                    <span *ngIf="!password.valid && password.touched">
-                        La contraseña es obligatoria
-                    </span>
+                <span *ngIf="!passwordRegister.valid && passwordRegister.touched">
+                    El password es obligatorio
+                </span>
             </div>
 
             <div>

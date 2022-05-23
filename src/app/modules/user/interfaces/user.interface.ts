@@ -8,6 +8,3 @@ export interface User{
         image:   string    
 }
 
-export interface ApiRestUserInterface{
-        
-}

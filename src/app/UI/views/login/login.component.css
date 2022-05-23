@@ -1,0 +1,112 @@
+.main{
+    background-color: #0a0b1f;   
+}
+
+
+
+#user_logged{
+    margin-top: 20px;
+    display: flex;   
+    flex-direction: column;
+    align-items: center;        
+}
+#user_logged .musicBlow{
+    align-self: flex-start;  
+    color: red;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+#user_logged .identity-name{
+    color: white;
+}
+.navigation{
+    height: 100vh;       
+}
+
+#navigation {
+ margin-top: 70px; 
+ display: flex;
+ flex-direction: column; 
+ align-items: center;
+    
+}
+#navigation div{
+    margin-top: 50px;        
+}
+#navigation div > a{
+    
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+    transition: all 300ms;        
+}
+
+#navigation div:hover a{
+    color: #78affc;      
+}
+
+
+#navigation div > a::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-color:white;
+    height: 1px;
+    width: 0px;
+    transition: all 300ms;
+
+}
+
+#navigation div > a:hover:before{
+    width: 100%;   
+}
+
+
+.actived{
+    border-bottom: 2px solid #78affc;
+    text-transform: uppercase;   
+    
+}
+
+#nav-cerrar{
+    margin-top: 34vh;
+}
+#nav-cerrar button{
+    background-color: rgba(9, 8, 8, 0);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    transition: all 600ms;
+    
+}
+#nav-cerrar button:hover{
+    color: rgb(120, 175, 252);
+    transform: translatex(15px);
+}
+
+#nav-cerrar button::before,
+#nav-cerrar button::after{
+    content: "";
+    height: 1px;
+    width: 0px;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    transition: all 300ms;
+
+}
+
+#nav-cerrar button:hover::before,
+#nav-cerrar button:hover::after{
+    width: 150%;
+    transform: rotatex(90deg);  
+}
+
+#nav-cerrar button::after{    
+    bottom: 0;
+    left: 0;
+     
+}

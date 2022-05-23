@@ -1,0 +1,87 @@
+.login-component{    
+    background-color: #13153a;
+    /* border-left: 1px solid white; */
+    height:100vh;
+    width: auto;
+}
+.titulo{
+    text-align: center;    
+    color: rgb(245, 245, 245);
+}
+
+.div-form-update{
+    margin: auto;
+}
+.form-update div{
+    margin-top: 50px;    
+    border-radius: 10px;
+    position: relative;
+}
+
+.form-update label{
+     color: rgb(255, 212, 146);
+}
+.form-update input[type = "text"]{
+    /* background-color: #78affc; */
+    height: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #78affc;
+    color: #f8f8f8;        
+    border-radius: 10px;
+    position: relative;
+    transition: all 400ms;
+    /* z-index: 2; */
+        
+}
+.form-update input[type = "text"]:focus{
+    background-color:#43a4ff65 ;
+}
+
+.input-disabled input{
+    background-color: rgb(162, 162, 162);
+}
+.form-update input[type = "email"]{    
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #78affc;
+    border-radius: 10px;
+    color: #aaaaaa; 
+}
+
+
+.form-update .input-effect::before{
+    content: "";
+    width: 0px;
+    height: 0px;    
+    bottom: 0;
+    background-color: #43a4ff65;
+    position: absolute;
+    transition: all 400ms;
+}
+
+.form-update .input-effect:hover:before{    
+    width: 100%;
+    height: 33px;    
+    border-radius: 10px;
+}
+
+.form-update .div-for-edit{
+    margin-top: 50px;
+}
+.form-update .btn-for-edit{
+    color: #d0d0d0;     
+}
+.form-update input[type = "submit"]{
+    background-color: transparent;
+    outline: none;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #319bff83;
+    transition: all 300ms;
+}
+
+.form-update input[type = "submit"]:hover{
+    border-color: #02afff;
+    cursor: pointer;
+}

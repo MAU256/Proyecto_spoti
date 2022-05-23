@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../domain/user/interfaces/user';
-import { UserService } from '../../../domain/user/services/user.service';
-import { LocalStorageService } from '../../../domain/services/local-storage.service';
+import { User } from '../../../modules/user/interfaces/user.interface';
+import { UserService } from '../../../modules/user/services/user.service';
+import { LocalStorageService } from '../../../modules/services/local-storage.service';
+import { global } from 'src/app/modules/services/path';
+import { Router, ActivatedRoute, Params, RouterModule } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  // styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
   providers: [
     UserService,
     LocalStorageService
@@ -22,10 +25,16 @@ export class LoginComponent implements OnInit {
   public token?: string;
   public errorMessage: string = '';
   public alertRegister: string = '';
+  public messageRegister:string = '';
+  public messageLogin:string = '';
+  public url: string;
+
 
   constructor(
     private _userService: UserService,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {
     // this.user = new User('','','','','','ROLE_USER','');     
     this.user = {
@@ -46,12 +55,13 @@ export class LoginComponent implements OnInit {
       role: 'ROLE_USER',
       image: ''
     }
+    this.url = global.url;
 
   }
   ngOnInit(): void {
     // console.log(this._userService.signUp());
     this.identity = this._localStorageService.getIdentity();
-    this.token = this._localStorageService.getToken();
+    this.token = this._localStorageService.getToken();    
   }
 
   public onSubmit() {
@@ -93,7 +103,7 @@ export class LoginComponent implements OnInit {
               let errorMessage = <any>error;
               if (errorMessage != null) {
                 this.errorMessage = "   " + error.error.message;
-                console.log(error)
+                this.messageLogin = "ERROR";
               }
             }
           );
@@ -103,7 +113,7 @@ export class LoginComponent implements OnInit {
         let errorMessage = <any>error;
         if (errorMessage != null) {
           this.errorMessage = "   " + error.error.message;
-          console.log(error)
+          this.messageLogin = "ERROR";
         }
       }
     );
@@ -117,7 +127,7 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
     this.identity = null;
     this.token = '';
-
+    this._router.navigate(['/']);
   }
 
 
@@ -128,9 +138,11 @@ export class LoginComponent implements OnInit {
         let user = response.user;
         this.user_register = user;
         if (!user._id) {
-          this.alertRegister = "Error al registrarse";
+         this.alertRegister = "Error al registrarse";
+          
         } else {
-          this.alertRegister = "El registro se ha realizado correctamente"
+          this.messageRegister = "LISTO"
+          this.alertRegister = "El registro se ha realizado correctamente!"
           this.user_register = {
             _id: '',
             name: '',
@@ -144,9 +156,9 @@ export class LoginComponent implements OnInit {
       }, error => {
         // let body = JSON.parse(error._body);
         let alertRegister = <any>error;
-        if (alertRegister != null) {
-          this.alertRegister = "   " + error.error.message;
-          console.log(error)
+        if (alertRegister != '') {
+         this.messageRegister = "ERROR";          
+          this.alertRegister = "   " + error.error.message;          
         }
       }
     );

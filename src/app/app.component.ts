@@ -1,12 +1,13 @@
 
 import { Component, OnInit } from '@angular/core';
-import { User } from './domain/user/interfaces/user';
-import { UserService } from './domain/user/services/user.service';
-import { LocalStorageService } from './domain/services/local-storage.service';
+import { User } from './modules/user/interfaces/user.interface';
+import { UserService } from './modules/user/services/user.service';
+import { LocalStorageService } from './modules/services/local-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   providers: [
     UserService, 
     LocalStorageService
